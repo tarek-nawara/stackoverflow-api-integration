@@ -1,5 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'groovy'
 apply plugin: 'checkstyle'
 
 repositories {
@@ -13,16 +14,20 @@ checkstyle {
 dependencies {
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.3'
     compile group: 'commons-io', name: 'commons-io', version: '2.6'
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    // jackson
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.2'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.2'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.2'
+
+    // log4j2
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.9.1'
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.9.1'
     compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.9.1'
     compile group: 'org.slf4j', name: 'log4j-over-slf4j', version: '1.7.25'
 
     // Guice dependency injection
-    // https://mvnrepository.com/artifact/com.google.inject/guice
     compile group: 'com.google.inject', name: 'guice', version: '4.1.0'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
