@@ -21,4 +21,8 @@ dependencies {
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.9.1'
     compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.9.1'
     compile group: 'org.slf4j', name: 'log4j-over-slf4j', version: '1.7.25'
+
+    // Guice dependency injection
+    // https://mvnrepository.com/artifact/com.google.inject/guice
+    compile group: 'com.google.inject', name: 'guice', version: '4.1.0'
 }

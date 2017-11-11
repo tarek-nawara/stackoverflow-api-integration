@@ -1,6 +1,8 @@
 package edu.stackoverflow.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import edu.stackoverflow.config.StackoverflowServiceParameters;
 import edu.stackoverflow.data.AnswersContainer;
 import edu.stackoverflow.service.api.StackoverflowService;
@@ -22,6 +24,7 @@ import java.util.Optional;
  * @author tarek-nawara
  * @version 1.0
  */
+@Singleton
 public final class StackoverflowServiceImpl implements StackoverflowService {
     private static final CloseableHttpClient HTTP_CLIENT =
             HttpClients.createDefault();
@@ -35,6 +38,7 @@ public final class StackoverflowServiceImpl implements StackoverflowService {
      *
      * @param parameters holder for all API URLs
      */
+    @Inject
     public StackoverflowServiceImpl(final StackoverflowServiceParameters parameters) {
         this.parameters = parameters;
     }
