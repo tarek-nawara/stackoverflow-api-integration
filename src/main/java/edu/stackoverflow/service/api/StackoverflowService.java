@@ -20,4 +20,14 @@ public interface StackoverflowService {
      * @see AnswersContainer
      */
     Optional<AnswersContainer> getAnswers();
+
+    /**
+     * Get the answer with the given id.
+     *
+     * @param id id of the target answer
+     * @return the answer with the given id, or
+     * {@code Optional.empty} if API call failed
+     * @see AnswersContainer
+     */
+    Optional<AnswersContainer> getAnswerWithId(long id);
 }

@@ -44,16 +44,36 @@ public final class StackoverflowServiceImpl implements StackoverflowService {
     }
 
     /** {@inheritDoc} */
+    @Override
     public Optional<AnswersContainer> getAnswers() {
+        return executeRequest(parameters.getAnswersURL(), AnswersContainer.class);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Optional<AnswersContainer> getAnswerWithId(final long id) {
+        return executeRequest(parameters.getAnswersWithIdURL(id), AnswersContainer.class);
+    }
+
+    /**
+     * Execute the API request, then marshall the API response
+     * to the given class type.
+     *
+     * @param url request url
+     * @param valueType class to marshall the response to
+     * @param <T> return type
+     * @return optional of {@code T}
+     */
+    private static <T> Optional<T> executeRequest(final String url, final Class<T> valueType) {
         try {
-            HttpGet httpGet = new HttpGet(parameters.getAnswersURL());
+            final HttpGet httpGet = new HttpGet(url);
             final CloseableHttpResponse response = HTTP_CLIENT.execute(httpGet);
             final HttpEntity entity = response.getEntity();
-            final AnswersContainer answersContainer =
-                    MAPPER.readValue(IOUtils.toString(entity.getContent(), Charset.defaultCharset()), AnswersContainer.class);
+            final T answersContainer =
+                    MAPPER.readValue(IOUtils.toString(entity.getContent(), Charset.defaultCharset()), valueType);
             return Optional.of(answersContainer);
         } catch (final IOException e) {
-            LOGGER.warn("Get answers API call failed with exception={}", e.getMessage());
+            LOGGER.warn("API call failed with exception={}", e.getMessage());
             return Optional.empty();
         }
     }

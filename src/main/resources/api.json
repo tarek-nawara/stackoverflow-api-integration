@@ -1,3 +1,4 @@
 {
-  "answers_url": "https://api.stackexchange.com/2.2/answers?order=desc&sort=activity&site=stackoverflow"
+  "answers_url": "https://api.stackexchange.com/2.2/answers?order=desc&sort=activity&site=stackoverflow",
+  "answers_with_id_url": "https://api.stackexchange.com/2.2/answers/%d?order=desc&sort=activity&site=stackoverflow"
 }
