@@ -4,9 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
+import com.google.inject.name.Names;
 import edu.stackoverflow.config.StackoverflowServiceParameters;
 import edu.stackoverflow.service.api.StackoverflowService;
 import edu.stackoverflow.service.impl.StackoverflowServiceImpl;
+import edu.stackoverflow.service.impl.StackoverflowServiceWithCachingImpl;
 import org.apache.commons.io.IOUtils;
 
 import java.io.InputStream;
@@ -14,6 +16,7 @@ import java.nio.charset.Charset;
 
 /**
  * Guice module.
+ *
  * @author tarek-nawara
  * @version 1.0
  */
@@ -22,7 +25,10 @@ public final class StackoverflowModule extends AbstractModule {
 
     @Override
     protected void configure() {
-       bind(StackoverflowService.class).to(StackoverflowServiceImpl.class);
+        bind(StackoverflowService.class)
+                .annotatedWith(Names.named("WithoutCaching"))
+                .to(StackoverflowServiceImpl.class);
+        bind(StackoverflowService.class).to(StackoverflowServiceWithCachingImpl.class);
     }
 
     /**

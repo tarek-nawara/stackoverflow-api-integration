@@ -9,6 +9,7 @@ import java.util.Objects;
 
 /**
  * Holder for all the answers coming from the API call.
+ *
  * @author tarek-nawara
  * @version 1.0
  */

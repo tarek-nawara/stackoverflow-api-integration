@@ -9,6 +9,7 @@ import java.util.Objects;
 
 /**
  * Representation of the answer owner.
+ *
  * @author tarek-nawara
  * @version 1.0
  */
@@ -23,11 +24,11 @@ public final class Owner {
     /**
      * Constructor.
      *
-     * @param reputation answer owner reputation
-     * @param userId answer owner id
-     * @param userType answer owner type, valid values `registered`
+     * @param reputation   answer owner reputation
+     * @param userId       answer owner id
+     * @param userType     answer owner type, valid values `registered`
      * @param profileImage image associated with owner id.
-     * @param displayName name of answer owner
+     * @param displayName  name of answer owner
      */
     @JsonCreator
     public Owner(@JsonProperty("reputation") final int reputation,

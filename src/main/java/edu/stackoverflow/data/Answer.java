@@ -8,6 +8,7 @@ import java.util.Objects;
 
 /**
  * Representation of single answer returned from the API call.
+ *
  * @author tarek-nawara
  * @version 1.0
  */
@@ -24,13 +25,13 @@ public final class Answer {
     /**
      * Constructor.
      *
-     * @param owner answer owner
-     * @param isAccepted if answer is accepted or not
-     * @param score answer score
+     * @param owner            answer owner
+     * @param isAccepted       if answer is accepted or not
+     * @param score            answer score
      * @param lastActivityDate last updated time
-     * @param creationDate time of answer creation
-     * @param answerId id of answer
-     * @param questionId question associated with this answer
+     * @param creationDate     time of answer creation
+     * @param answerId         id of answer
+     * @param questionId       question associated with this answer
      */
     @JsonCreator
     public Answer(@JsonProperty("owner") final Owner owner,
