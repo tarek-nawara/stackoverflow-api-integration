@@ -10,10 +10,22 @@ import spock.lang.Specification
 class StackoverflowServiceImplSpec extends Specification {
     def "Calling answers API should work"() {
         given:
-        final injector = Guice.createInjector(new StackoverflowModule())
-        final stackoverflowService = injector.getInstance(Key.get(StackoverflowService.class, Names.named("WithoutCaching")))
+        final stackoverflowService = getStackoverflowService()
 
         expect:
         stackoverflowService.getAnswers() != null
+    }
+
+    def "Calling answers with id API should work"() {
+        given:
+        final stackoverflowService = getStackoverflowService()
+
+        expect:
+        stackoverflowService.getAnswerWithId(1234) != null
+    }
+
+    def getStackoverflowService() {
+        final injector = Guice.createInjector(new StackoverflowModule())
+        return injector.getInstance(Key.get(StackoverflowService.class, Names.named("WithoutCaching")))
     }
 }

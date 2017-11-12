@@ -80,6 +80,7 @@ public final class StackoverflowServiceImpl implements StackoverflowService {
                     .supplyAsync(() -> executeRequest(url, valueType))
                     .get(timeOut, TimeUnit.SECONDS);
         } catch (final Exception e) {
+            LOGGER.error("API call timed out");
             return Optional.empty();
         }
     }
