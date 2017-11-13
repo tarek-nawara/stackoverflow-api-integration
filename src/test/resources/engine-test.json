@@ -1,0 +1,40 @@
+{
+  "items": [
+    {
+      "owner": {
+        "reputation": 32305,
+        "user_id": 4984832,
+        "user_type": "registered",
+        "accept_rate": 79,
+        "profile_image": "https://www.gravatar.com/avatar/be4bc3e019d1082f7945b8db7ab313c9?s=128&d=identicon&r=PG",
+        "display_name": "SushiHangover",
+        "link": "https://stackoverflow.com/users/4984832/sushihangover"
+      },
+      "is_accepted": true,
+      "score": 2,
+      "last_activity_date": 1510606828,
+      "last_edit_date": 1510606828,
+      "creation_date": 1510603222,
+      "answer_id": 47272554,
+      "question_id": 47267464
+    },
+    {
+      "owner": {
+        "reputation": 2899,
+        "user_id": 691345,
+        "user_type": "registered",
+        "accept_rate": 92,
+        "profile_image": "https://www.gravatar.com/avatar/ac6ecf760832479903299613d0309189?s=128&d=identicon&r=PG",
+        "display_name": "Martin Nuc",
+        "link": "https://stackoverflow.com/users/691345/martin-nuc"
+      },
+      "is_accepted": false,
+      "score": 0,
+      "last_activity_date": 1510606826,
+      "last_edit_date": 1510606826,
+      "creation_date": 1510604829,
+      "answer_id": 47272981,
+      "question_id": 47272221
+    }
+  ]
+}
