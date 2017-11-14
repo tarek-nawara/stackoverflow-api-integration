@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
+import com.google.inject.name.Named;
 import com.google.inject.name.Names;
 import edu.stackoverflow.config.StackoverflowServiceParameters;
 import edu.stackoverflow.service.api.StackoverflowService;
@@ -20,11 +21,10 @@ import java.nio.charset.Charset;
  * @author tarek-nawara
  * @version 1.0
  */
-public final class StackoverflowModule extends AbstractModule {
-    private static final String CONFIG_FILE = "api.json";
-
+public class StackoverflowModule extends AbstractModule {
     @Override
     protected void configure() {
+        bindParametersFile();
         bind(StackoverflowService.class)
                 .annotatedWith(Names.named("WithoutCaching"))
                 .to(StackoverflowServiceImpl.class);
@@ -32,17 +32,26 @@ public final class StackoverflowModule extends AbstractModule {
     }
 
     /**
+     * Set the path for the file holding the configurations.
+     */
+    protected void bindParametersFile() {
+        bindConstant().annotatedWith(Names.named("parameters-file-path")).to("api.json");
+    }
+
+    /**
      * Read the API URLs from the {@code CONFIG_FILE}.
      *
+     * @param parametersFilePath Path of the `Json` file holding the configurations
      * @return API URLs.
      * @throws RuntimeException if failed to read
      */
     @Provides
     @Singleton
-    StackoverflowServiceParameters provideStackoverflowServiceParameters() {
+    StackoverflowServiceParameters provideStackoverflowServiceParameters(
+            @Named("parameters-file-path") final String parametersFilePath) {
         try {
             final InputStream stream =
-                    StackoverflowServiceParameters.class.getClassLoader().getResourceAsStream(CONFIG_FILE);
+                    StackoverflowServiceParameters.class.getClassLoader().getResourceAsStream(parametersFilePath);
             final String configFile = IOUtils.toString(stream, Charset.defaultCharset());
             final ObjectMapper mapper = new ObjectMapper();
             return mapper.readValue(configFile, StackoverflowServiceParameters.class);

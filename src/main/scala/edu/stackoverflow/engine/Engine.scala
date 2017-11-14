@@ -15,7 +15,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 class Engine(answersContainer: AnswersContainer) {
   private val conf = new SparkConf().setAppName("stackoverflow").setMaster("local")
   private val sc = new SparkContext(conf)
-  private val answers = JavaConverters.asScalaBuffer(answersContainer.getAnswers)
+  private val answersRDD = sc.makeRDD(JavaConverters.asScalaBuffer(answersContainer.getAnswers))
 
   /** Rank the owners according to the total number of answers' score
     * they have in descending order.
@@ -23,7 +23,6 @@ class Engine(answersContainer: AnswersContainer) {
     * @return sorted Seq of the ranked owners
     */
   def rankOwnersWithScore(): Seq[(Owner, Int)] = {
-    val answersRDD = sc.makeRDD(answers)
     val result = answersRDD.groupBy(_.getOwner).mapValues(_.map(_.getScore).sum).collect()
     result.sortBy(_._2)
   }
@@ -33,7 +32,7 @@ class Engine(answersContainer: AnswersContainer) {
     * @return list of ordered accepted answers
     */
   def rankAnswersWithScore(): Seq[Answer] = {
-    answers.filter(_.isAccepted).sortBy(_.getScore)
+    answersRDD.filter(_.isAccepted).sortBy(_.getScore).collect()
   }
 
   /** Get all the answers created after the given date.
@@ -42,14 +41,14 @@ class Engine(answersContainer: AnswersContainer) {
     * @return all answers created after the target date
     */
   def findAnswersAfterCreationDate(startDate: Date): Seq[Answer] = {
-    answers.filter(_.getCreationDate.compareTo(startDate) >= 0)
+    answersRDD.filter(_.getCreationDate.compareTo(startDate) >= 0).collect()
   }
 
   /** Group all the answers with the corresponding owners.
     *
     * @return group of answers with owners as the `key`
     */
-  def groupByOwners(): Map[Owner, Seq[Answer]] = {
-    answers.groupBy(_.getOwner)
+  def groupByOwners(): Array[(Owner, Iterable[Answer])] = {
+    answersRDD.groupBy(_.getOwner).collect()
   }
 }

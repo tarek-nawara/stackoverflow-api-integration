@@ -1,6 +1,6 @@
 {
   "answers_url": "https://api.stackexchange.com/2.2/answers?order=desc&sort=activity&site=stackoverflow",
   "answers_with_id_url": "https://api.stackexchange.com/2.2/answers/%d?order=desc&sort=activity&site=stackoverflow",
-  "answers_timeout": 60,
+  "answers_timeout": 10,
   "answer_with_id_timeout": 10
 }

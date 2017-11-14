@@ -4,6 +4,7 @@ import com.google.inject.Guice
 import com.google.inject.Key
 import com.google.inject.name.Names
 import edu.stackoverflow.guice.StackoverflowModule
+import edu.stackoverflow.guice.StackoverflowTestingModule
 import edu.stackoverflow.service.api.StackoverflowService
 import spock.lang.Specification
 
@@ -25,7 +26,7 @@ class StackoverflowServiceImplSpec extends Specification {
     }
 
     def getStackoverflowService() {
-        final injector = Guice.createInjector(new StackoverflowModule())
+        final injector = Guice.createInjector(new StackoverflowTestingModule())
         return injector.getInstance(Key.get(StackoverflowService.class, Names.named("WithoutCaching")))
     }
 }

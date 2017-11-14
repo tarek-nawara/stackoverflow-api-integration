@@ -33,8 +33,6 @@ public final class StackoverflowServiceImpl implements StackoverflowService {
             HttpClients.createDefault();
     private static final ObjectMapper MAPPER = new ObjectMapper();
     private static final Logger LOGGER = LoggerFactory.getLogger(StackoverflowServiceImpl.class);
-    private static final int GET_ANSWER_TIMEOUT = 60;
-    private static final int GET_ANSWER_WITH_ID_TIMEOUT = 10;
 
     private final StackoverflowServiceParameters parameters;
 
@@ -53,7 +51,7 @@ public final class StackoverflowServiceImpl implements StackoverflowService {
      */
     @Override
     public Optional<AnswersContainer> getAnswers() {
-        return executeRequest(parameters.getAnswersURL(), AnswersContainer.class, GET_ANSWER_TIMEOUT);
+        return executeRequest(parameters.getAnswersURL(), AnswersContainer.class, parameters.getAnswersTimeout());
     }
 
     /**
@@ -61,7 +59,7 @@ public final class StackoverflowServiceImpl implements StackoverflowService {
      */
     @Override
     public Optional<AnswersContainer> getAnswerWithId(final long id) {
-        return executeRequest(parameters.getAnswersWithIdURL(id), AnswersContainer.class, GET_ANSWER_WITH_ID_TIMEOUT);
+        return executeRequest(parameters.getAnswersWithIdURL(id), AnswersContainer.class, parameters.getAnswerWithIdTimeout());
     }
 
     /**

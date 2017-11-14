@@ -2,6 +2,7 @@ package edu.stackoverflow.service.impl
 
 import com.google.inject.Guice
 import edu.stackoverflow.guice.StackoverflowModule
+import edu.stackoverflow.guice.StackoverflowTestingModule
 import edu.stackoverflow.service.api.StackoverflowService
 import spock.lang.Specification
 
@@ -9,7 +10,7 @@ class StackoverflowServiceWithCachingImplSpec extends Specification {
 
     def "stack overflow service with caching sanity test"() {
         given:
-        final injector = Guice.createInjector(new StackoverflowModule())
+        final injector = Guice.createInjector(new StackoverflowTestingModule())
         final stackoverflowService = injector.getInstance(StackoverflowService.class)
 
         expect:
