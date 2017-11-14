@@ -4,8 +4,7 @@ package edu.stackoverflow.data;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.Objects;
+import lombok.Data;
 
 /**
  * Representation of the answer owner.
@@ -13,6 +12,7 @@ import java.util.Objects;
  * @author tarek-nawara
  * @version 1.0
  */
+@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public final class Owner {
     private final int reputation;
@@ -41,62 +41,5 @@ public final class Owner {
         this.userType = userType;
         this.profileImage = profileImage;
         this.displayName = displayName;
-    }
-
-    public int getReputation() {
-        return reputation;
-    }
-
-    public long getUserId() {
-        return userId;
-    }
-
-    public String getUserType() {
-        return userType;
-    }
-
-    public String getProfileImage() {
-        return profileImage;
-    }
-
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        final Owner owner = (Owner) o;
-        return reputation == owner.reputation
-                && userId == owner.userId
-                && Objects.equals(userType, owner.userType)
-                && Objects.equals(profileImage, owner.profileImage)
-                && Objects.equals(displayName, owner.displayName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(reputation, userId, userType, profileImage, displayName);
-    }
-
-    @Override
-    public String toString() {
-        return "Owner{"
-                + "reputation="
-                + reputation
-                + ", userId="
-                + userId
-                + ", userType='"
-                + userType + '\''
-                + ", profileImage='"
-                + profileImage + '\''
-                + ", displayName='"
-                + displayName + '\''
-                + '}';
     }
 }

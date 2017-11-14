@@ -3,8 +3,9 @@ package edu.stackoverflow.data;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
-import java.util.Objects;
+import java.util.Date;
 
 /**
  * Representation of single answer returned from the API call.
@@ -12,13 +13,16 @@ import java.util.Objects;
  * @author tarek-nawara
  * @version 1.0
  */
+@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public final class Answer {
+    private static final int DATE_SCALE = 1000;
+
     private final Owner owner;
     private final boolean isAccepted;
     private final int score;
-    private final long lastActivityDate;
-    private final long creationDate;
+    private final Date lastActivityDate;
+    private final Date creationDate;
     private final long answerId;
     private final long questionId;
 
@@ -44,80 +48,9 @@ public final class Answer {
         this.owner = owner;
         this.isAccepted = isAccepted;
         this.score = score;
-        this.lastActivityDate = lastActivityDate;
-        this.creationDate = creationDate;
+        this.lastActivityDate = new Date(lastActivityDate * DATE_SCALE);
+        this.creationDate = new Date(creationDate * DATE_SCALE);
         this.answerId = answerId;
         this.questionId = questionId;
-    }
-
-    public Owner getOwner() {
-        return owner;
-    }
-
-    public boolean isAccepted() {
-        return isAccepted;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public long getLastActivityDate() {
-        return lastActivityDate;
-    }
-
-    public long getCreationDate() {
-        return creationDate;
-    }
-
-    public long getAnswerId() {
-        return answerId;
-    }
-
-    public long getQuestionId() {
-        return questionId;
-    }
-
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        final Answer answer = (Answer) o;
-        return isAccepted == answer.isAccepted
-                && score == answer.score
-                && lastActivityDate == answer.lastActivityDate
-                && creationDate == answer.creationDate
-                && answerId == answer.answerId
-                && questionId == answer.questionId
-                && Objects.equals(owner, answer.owner);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(owner, isAccepted, score, lastActivityDate, creationDate, answerId, questionId);
-    }
-
-    @Override
-    public String toString() {
-        return "Answer{"
-                + "owner="
-                + owner
-                + ", isAccepted="
-                + isAccepted
-                + ", score="
-                + score
-                + ", lastActivityDate="
-                + lastActivityDate
-                + ", creationDate="
-                + creationDate
-                + ", answerId="
-                + answerId
-                + ", questionId="
-                + questionId
-                + '}';
     }
 }

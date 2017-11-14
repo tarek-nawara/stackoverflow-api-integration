@@ -103,7 +103,7 @@ public final class StackoverflowServiceImpl implements StackoverflowService {
                     MAPPER.readValue(IOUtils.toString(entity.getContent(), Charset.defaultCharset()), valueType);
             return Optional.of(answersContainer);
         } catch (final IOException e) {
-            LOGGER.warn("API call failed with exception={}", e.getMessage());
+            LOGGER.error("API call failed with exception={}", e.getMessage());
             return Optional.empty();
         }
     }

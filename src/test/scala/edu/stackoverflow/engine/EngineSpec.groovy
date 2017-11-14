@@ -9,10 +9,9 @@ class EngineSpec extends Specification {
         given:
         final jsonTestUtils = new JsonTestingUtils()
         def (answersContainer, _) = jsonTestUtils.readJsonFromFile("engine-test.json", AnswersContainer.class)
-        final engine = new Engine()
+        final engine = new Engine(answersContainer)
 
         expect:
-        engine.rankOwnersWithScore(answersContainer) != null
+        engine.rankOwnersWithScore().head()._1().getUserId() == 4984832
     }
-
 }
