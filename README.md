@@ -1,4 +1,4 @@
-![build passing](https://raw.githubusercontent.com/dwyl/repo-badges/master/highresPNGs/build-passing.png)
+![build Status](https://travis-ci.org/tarek-nawara/stackoverflow-api-integration.svg?branch=master)
 # stackoverflow-api-integration
 Simple show case for integrating with stackoverflow api
 
