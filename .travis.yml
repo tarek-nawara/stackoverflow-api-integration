@@ -1,6 +1,5 @@
 language: java
 sudo: false # faster builds
 
-after_success:
-  - bash <(echo "build passing")
-
+script:
+        - gradle build
