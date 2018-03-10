@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/tarek-nawara/stackoverflow-api-integration.svg?branch=master)](https://travis-ci.org/tarek-nawara/stackoverflow-api-integration)
+[![codecov](https://codecov.io/gh/tarek-nawara/stackoverflow-api-integration/branch/master/graph/badge.svg)](https://codecov.io/gh/tarek-nawara/stackoverflow-api-integration)
+
 # stackoverflow-api-integration
 Simple show case for integrating with stackoverflow api
 

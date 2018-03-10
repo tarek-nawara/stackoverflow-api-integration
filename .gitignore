@@ -2,3 +2,6 @@ stackoverflow.ipr
 stackoverflow.iws
 .gradle
 .gradletasknamecache
+.idea
+*.iml
+build
